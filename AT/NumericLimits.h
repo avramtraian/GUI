@@ -33,11 +33,11 @@ public:
     public:                                                                      \
         NODISCARD ALWAYS_INLINE static constexpr type min()                      \
         {                                                                        \
-            return min_limit;                                                    \
+            return (min_limit);                                                  \
         }                                                                        \
         NODISCARD ALWAYS_INLINE static constexpr type max()                      \
         {                                                                        \
-            return max_limit;                                                    \
+            return (max_limit);                                                  \
         }                                                                        \
     };
 
@@ -47,10 +47,10 @@ AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(u16, 0, 0xFFFF);
 AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(u32, 0, 0xFFFFFFFF);
 AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(u64, 0, 0xFFFFFFFFFFFFFFFF);
 
-AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s8,  -0x80,               0x7F);
-AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s16, -0x8000,             0x7FFF);
-AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s32, -0x80000000,         0x7FFFFFFF);
-AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s64, -0x8000000000000000, 0x7FFFFFFFFFFFFFFF);
+AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s8,  -static_cast<s8> (0x7F)               - 1, 0x7F);
+AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s16, -static_cast<s16>(0x7FFF)             - 1, 0x7FFF);
+AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s32, -static_cast<s32>(0x7FFFFFFF)         - 1, 0x7FFFFFFF);
+AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE(s64, -static_cast<s64>(0x7FFFFFFFFFFFFFFF) - 1, 0x7FFFFFFFFFFFFFFF);
 // clang-format on
 
 #undef AT_DECLARE_NUMERIC_LIMITS_FOR_PRIMITIVE_TYPE
