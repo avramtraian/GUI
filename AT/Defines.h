@@ -33,13 +33,13 @@
 #endif // _MSC_BUILD
 
 #if AT_COMPILER_MSVC
-    #define ALWAYS_INLINE       __forceinline
-    #define FUNCTION            __FUNCSIG__
-    #define PLATFORM_DEBUGBREAK __debugbreak()
+    #define ALWAYS_INLINE          __forceinline
+    #define AT_FUNCTION            __FUNCSIG__
+    #define AT_PLATFORM_DEBUGBREAK __debugbreak()
 #else
-    #define ALWAYS_INLINE       __attribute__(always_inline) inline
-    #define FUNCTION            __PRETTY_FUNCTION__
-    #define PLATFORM_DEBUGBREAK __builtin_trap()
+    #define ALWAYS_INLINE          __attribute__(always_inline) inline
+    #define AT_FUNCTION            __PRETTY_FUNCTION__
+    #define AT_PLATFORM_DEBUGBREAK __builtin_trap()
 #endif // AT_COMPILER_MSVC
 
 #define NODISCARD    [[nodiscard]]
