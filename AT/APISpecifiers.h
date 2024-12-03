@@ -8,10 +8,16 @@
 #include <AT/Defines.h>
 
 #if AT_PLATFORM_WINDOWS
-    #if AT_COMPILER_MSVC
+    #if AT_COMPILER_GCC
+        #define AT_API_SPECIFIER_EXPORT __attribute__((visibility("default")))
+        #define AT_API_SPECIFIER_IMPORT
+    #else
         #define AT_API_SPECIFIER_EXPORT __declspec(dllexport)
         #define AT_API_SPECIFIER_IMPORT __declspec(dllimport)
     #endif // AT_COMPILER_MSVC
+#else
+    #define AT_API_SPECIFIER_EXPORT __attribute__((visibility("default")))
+    #define AT_API_SPECIFIER_IMPORT
 #endif // AT_PLATFORM_WINDOWS
 
 #ifndef AT_API_SPECIFIER_EXPORT

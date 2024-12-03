@@ -37,7 +37,7 @@
     #define AT_FUNCTION            __FUNCSIG__
     #define AT_PLATFORM_DEBUGBREAK __debugbreak()
 #else
-    #define ALWAYS_INLINE          __attribute__(always_inline) inline
+    #define ALWAYS_INLINE          __attribute__((always_inline)) inline
     #define AT_FUNCTION            __PRETTY_FUNCTION__
     #define AT_PLATFORM_DEBUGBREAK __builtin_trap()
 #endif // AT_COMPILER_MSVC
