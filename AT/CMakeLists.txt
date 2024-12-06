@@ -14,6 +14,8 @@ set(AT_FRAMEWORK_SOURCE_FILES
     Defines.h
     Format.cpp
     Format.h
+    LogStream.cpp
+    LogStream.h
     MemoryOperations.cpp
     MemoryOperations.h
     New.h
