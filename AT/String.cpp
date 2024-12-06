@@ -19,8 +19,7 @@ String::String()
 
 String::~String()
 {
-    if (!is_stored_inline())
-        free_heap_buffer(m_heap_buffer, m_byte_count);
+    clear();
 }
 
 String::String(const String& other)
@@ -128,7 +127,7 @@ String& String::operator=(StringView string_view)
 
 void String::clear()
 {
-    if (!is_stored_inline())
+    if (!is_stored_inline() && decrement_reference_count())
         free_heap_buffer(m_heap_buffer, m_byte_count);
 
     m_byte_count = 1;
