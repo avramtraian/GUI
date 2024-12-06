@@ -24,6 +24,8 @@ set(AT_FRAMEWORK_SOURCE_FILES
     Span.h
     String.cpp
     String.h
+    StringBuilder.cpp
+    StringBuilder.h
     StringView.cpp
     StringView.h
     Types.h
