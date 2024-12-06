@@ -93,6 +93,12 @@ public:
     }
 
 public:
+    ALWAYS_INLINE void clear()
+    {
+        m_characters = nullptr;
+        m_byte_count = 0;
+    }
+
     NODISCARD AT_API bool operator==(const StringView& other) const;
     NODISCARD AT_API bool operator!=(const StringView& other) const;
 
