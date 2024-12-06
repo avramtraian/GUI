@@ -12,6 +12,8 @@ set(AT_FRAMEWORK_SOURCE_FILES
     ByteBuffer.cpp
     ByteBuffer.h
     Defines.h
+    Format.cpp
+    Format.h
     MemoryOperations.cpp
     MemoryOperations.h
     New.h
