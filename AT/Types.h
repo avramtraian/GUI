@@ -55,6 +55,22 @@ template<typename T> struct RemoveConst<const T> { using Type = T; };
 
 template<typename T> struct IsConst          { static constexpr bool value = false; };
 template<typename T> struct IsConst<const T> { static constexpr bool value = true; };
+
+template<typename T> struct IsUnsignedInteger      { static constexpr bool value = false; };
+template<>           struct IsUnsignedInteger<u8>  { static constexpr bool value = true; };
+template<>           struct IsUnsignedInteger<u16> { static constexpr bool value = true; };
+template<>           struct IsUnsignedInteger<u32> { static constexpr bool value = true; };
+template<>           struct IsUnsignedInteger<u64> { static constexpr bool value = true; };
+
+template<typename T> struct IsSignedInteger      { static constexpr bool value = false; };
+template<>           struct IsSignedInteger<s8>  { static constexpr bool value = true; };
+template<>           struct IsSignedInteger<s16> { static constexpr bool value = true; };
+template<>           struct IsSignedInteger<s32> { static constexpr bool value = true; };
+template<>           struct IsSignedInteger<s64> { static constexpr bool value = true; };
+
+template<typename T> struct IsFloatingPoint      { static constexpr bool value = false; };
+template<>           struct IsFloatingPoint<f32> { static constexpr bool value = true; };
+template<>           struct IsFloatingPoint<f64> { static constexpr bool value = true; };
 // clang-format on
 } // namespace Implementation
 
@@ -66,6 +82,16 @@ using RemoveConst = typename Implementation::RemoveConst<T>::Type;
 
 template<typename T>
 static constexpr bool is_const = Implementation::IsConst<T>::value;
+
+template<typename T>
+static constexpr bool is_unsigned_integer = Implementation::IsUnsignedInteger<T>::value;
+template<typename T>
+static constexpr bool is_signed_integer = Implementation::IsSignedInteger<T>::value;
+template<typename T>
+static constexpr bool is_integer = is_unsigned_integer<T> || is_signed_integer<T>;
+
+template<typename T>
+static constexpr bool is_floating_point = Implementation::IsFloatingPoint<T>::value;
 
 // Wrapper around 'https://en.cppreference.com/w/cpp/types/is_base_of'.
 template<typename DerivedType, typename BaseType>
@@ -111,6 +137,9 @@ using AT::f32;
 using AT::f64;
 using AT::forward;
 using AT::is_const;
+using AT::is_integer;
+using AT::is_signed_integer;
+using AT::is_unsigned_integer;
 using AT::move;
 using AT::ReadonlyByte;
 using AT::ReadonlyBytes;
